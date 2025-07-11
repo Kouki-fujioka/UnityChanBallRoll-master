@@ -1,182 +1,182 @@
-/*
- * namespace : –¼‘O‹óŠÔ (ƒNƒ‰ƒX“™Š‘®æ) ‚ğ’è‹`
+ï»¿/*
+ * namespace : åå‰ç©ºé–“ (ã‚¯ãƒ©ã‚¹ç­‰æ‰€å±å…ˆ) ã‚’å®šç¾©
  * 
- * using : –¼‘O‹óŠÔ“à‚Ì—v‘f‚ÉÚ“ª«‚ğÈ—ª‚µ‚ÄƒAƒNƒZƒX‰Â”\
+ * using : åå‰ç©ºé–“å†…ã®è¦ç´ ã«æ¥é ­è¾ã‚’çœç•¥ã—ã¦ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½
  */
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
 /*
- * private (È—ª‰Â”\) : “¯ƒNƒ‰ƒX‚©‚çƒAƒNƒZƒX‰Â”\
+ * private (çœç•¥å¯èƒ½) : åŒã‚¯ãƒ©ã‚¹ã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½
  * 
- * protected : “¯ƒNƒ‰ƒX, ƒTƒuƒNƒ‰ƒX (Œp³æ) ‚©‚çƒAƒNƒZƒX‰Â”\
+ * protected : åŒã‚¯ãƒ©ã‚¹, ã‚µãƒ–ã‚¯ãƒ©ã‚¹ (ç¶™æ‰¿å…ˆ) ã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½
  * 
- * public : ‘SƒNƒ‰ƒX‚©‚çƒAƒNƒZƒX‰Â”\ (ƒCƒ“ƒXƒyƒNƒ^‚©‚çİ’è‰Â”\)
+ * public : å…¨ã‚¯ãƒ©ã‚¹ã‹ã‚‰ã‚¢ã‚¯ã‚»ã‚¹å¯èƒ½ (ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ã‹ã‚‰è¨­å®šå¯èƒ½)
  * 
- * MonoBehaviour ƒNƒ‰ƒX : ƒXƒNƒŠƒvƒg‚ğƒRƒ“ƒ|[ƒlƒ“ƒg‚Æ‚µ‚ÄƒAƒ^ƒbƒ`‰Â”\‚É‚·‚éƒtƒŒ[ƒ€ƒ[ƒN, ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğ§Œä‚·‚é‹@”\“™‚ğ’ñ‹Ÿ
+ * MonoBehaviour ã‚¯ãƒ©ã‚¹ : ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã¨ã—ã¦ã‚¢ã‚¿ãƒƒãƒå¯èƒ½ã«ã™ã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¯ãƒ¼ã‚¯, ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’åˆ¶å¾¡ã™ã‚‹æ©Ÿèƒ½ç­‰ã‚’æä¾›
  */
-public class PlayerController : MonoBehaviour   // PlayerController (MonoBehaviour Œp³) ƒNƒ‰ƒX‚ğ public ‚Æ‚µ‚Ä’è‹`
+public class PlayerController : MonoBehaviour   // PlayerController (MonoBehaviour ç¶™æ‰¿) ã‚¯ãƒ©ã‚¹ã‚’ public ã¨ã—ã¦å®šç¾©
 {
     /*
-     * ’lŒ^ (Value Type) : ƒf[ƒ^ (’l) ‚ğ•Û
+     * å€¤å‹ (Value Type) : ãƒ‡ãƒ¼ã‚¿ (å€¤) ã‚’ä¿æŒ
      * 
-     * QÆŒ^ (Reference Type) : ƒAƒhƒŒƒX (QÆ) ‚ğ•Û
+     * å‚ç…§å‹ (Reference Type) : ã‚¢ãƒ‰ãƒ¬ã‚¹ (å‚ç…§) ã‚’ä¿æŒ
      */
-    Rigidbody rb;   // Rigidbody Œ^ (QÆŒ^) ‚ÌƒtƒB[ƒ‹ƒh (rb) ‚ğ private ‚Æ‚µ‚Ä’è‹`
-    public float speed; // float Œ^ (’lŒ^) ‚ÌƒtƒB[ƒ‹ƒh (speed) ‚ğ public ‚Æ‚µ‚Ä’è‹` (ƒCƒ“ƒXƒyƒNƒ^ : 10)
-    int count;  // int Œ^ (’lŒ^) ‚ÌƒtƒB[ƒ‹ƒh (count) ‚ğ private ‚Æ‚µ‚Ä’è‹`
-    public TextMeshProUGUI countText;   // TextMeshProUGUI Œ^ (QÆŒ^) ‚ÌƒtƒB[ƒ‹ƒh (countText) ‚ğ public ‚Æ‚µ‚Ä’è‹` (ƒCƒ“ƒXƒyƒNƒ^ : CountText (Text Mesh Pro UGUI))
-    AudioSource getSE;  // AudioSource Œ^ (QÆŒ^) ‚ÌƒtƒB[ƒ‹ƒh (getSE) ‚ğ private ‚Æ‚µ‚Ä’è‹`
+    Rigidbody rb;   // Rigidbody å‹ (å‚ç…§å‹) ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ (rb) ã‚’ private ã¨ã—ã¦å®šç¾©
+    public float speed; // float å‹ (å€¤å‹) ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ (speed) ã‚’ public ã¨ã—ã¦å®šç¾© (ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ : 10)
+    int count;  // int å‹ (å€¤å‹) ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ (count) ã‚’ private ã¨ã—ã¦å®šç¾©
+    public TextMeshProUGUI countText;   // TextMeshProUGUI å‹ (å‚ç…§å‹) ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ (countText) ã‚’ public ã¨ã—ã¦å®šç¾© (ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ : CountText (Text Mesh Pro UGUI))
+    AudioSource getSE;  // AudioSource å‹ (å‚ç…§å‹) ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ (getSE) ã‚’ private ã¨ã—ã¦å®šç¾©
 
     /*
-     * MonoBehaviour.Start() : ‘SƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì MonoBehaviour.Awake() I—¹Œã, –{ƒRƒ“ƒ|[ƒlƒ“ƒg‚ÆƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚éƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ì—¼•û‚ª—LŒø‚Èê‡‚É 1 ‰ñ‚¾‚¯Às‚³‚ê‚éƒƒ\ƒbƒh
+     * MonoBehaviour.Start() : å…¨ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã® MonoBehaviour.Awake() çµ‚äº†å¾Œ, æœ¬ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã¨ã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä¸¡æ–¹ãŒæœ‰åŠ¹ãªå ´åˆã« 1 å›ã ã‘å®Ÿè¡Œã•ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
      */
     void Start()
     {
         /* 
          * this.gameObject.GetComponent<T>()
-         * this (È—ª‰Â”\) : –{ƒRƒ“ƒ|[ƒlƒ“ƒg (QÆ)
-         * gameObject (È—ª‰Â”\) : ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (QÆ)
-         * –{ƒRƒ“ƒ|[ƒlƒ“ƒg‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚éƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ì T ƒRƒ“ƒ|[ƒlƒ“ƒg (QÆ) ‚ğæ“¾ (æ“¾•s‰Â”\ ¨ null)
+         * this (çœç•¥å¯èƒ½) : æœ¬ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ (å‚ç…§)
+         * gameObject (çœç•¥å¯èƒ½) : ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (å‚ç…§)
+         * æœ¬ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆãŒã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã® T ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ (å‚ç…§) ã‚’å–å¾— (å–å¾—ä¸å¯èƒ½ â†’ null)
          *
-         * Rigidbody ƒRƒ“ƒ|[ƒlƒ“ƒg : ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚É•¨—“Á«‚ğ’Ç‰Á
+         * Rigidbody ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ : ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ç‰©ç†ç‰¹æ€§ã‚’è¿½åŠ 
          */
-        rb = GetComponent<Rigidbody>(); // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (Player) ‚Ì Rigidbody ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾
-        count = 0;  // ‰Šú‰»
-        SetCountText(); // ƒeƒLƒXƒg (ƒAƒCƒeƒ€æ“¾”) ‚ğ UI ‚É•\¦
+        rb = GetComponent<Rigidbody>(); // ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (Player) ã® Rigidbody ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—
+        count = 0;  // åˆæœŸåŒ–
+        SetCountText(); // ãƒ†ã‚­ã‚¹ãƒˆ (ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æ•°) ã‚’ UI ã«è¡¨ç¤º
         /*
-         * AudioSource ƒRƒ“ƒ|[ƒlƒ“ƒg : ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ÉƒI[ƒfƒBƒIÄ¶‹@”\‚ğ’Ç‰Á
+         * AudioSource ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ : ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚ªãƒ¼ãƒ‡ã‚£ã‚ªå†ç”Ÿæ©Ÿèƒ½ã‚’è¿½åŠ 
          */
-        getSE = GetComponent<AudioSource>();    // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (Player) ‚Ì AudioSource ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾
+        getSE = GetComponent<AudioSource>();    // ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (Player) ã® AudioSource ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—
     }
 
     /*
-     * MonoBehaviour.Update() : ‘SƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì MonoBehaviour.Start() I—¹Œã, ƒtƒŒ[ƒ€ (•s’è, «”\ˆË‘¶) –ˆ‚É 1 ‰ñ‚¾‚¯Às‚³‚ê‚éƒƒ\ƒbƒh
+     * MonoBehaviour.Update() : å…¨ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã® MonoBehaviour.Start() çµ‚äº†å¾Œ, ãƒ•ãƒ¬ãƒ¼ãƒ  (ä¸å®š, æ€§èƒ½ä¾å­˜) æ¯ã« 1 å›ã ã‘å®Ÿè¡Œã•ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
      */
     // void Update()
     // {
     //     /*
     //      * Input.GetAxis("Horizontal")
-    //      * Horizontal : Input Manager ‚©‚çƒL[İ’è‰Â”\
-    //      * ˆÚ“®ƒL[ (A, ©) ‚ğ‰Ÿ‚µ‚Ä‚¢‚é’·‚³‚É‰‚¶‚Ä¬”‚Ì–ß‚è’l‚ğ•Ô‹p (0 ~ -1)
-    //      * ˆÚ“®ƒL[ (D, ¨) ‚ğ‰Ÿ‚µ‚Ä‚¢‚é’·‚³‚É‰‚¶‚Ä¬”‚Ì–ß‚è’l‚ğ•Ô‹p (0 ~ 1)
+    //      * Horizontal : Input Manager ã‹ã‚‰ã‚­ãƒ¼è¨­å®šå¯èƒ½
+    //      * ç§»å‹•ã‚­ãƒ¼ (A, â†) ã‚’æŠ¼ã—ã¦ã„ã‚‹é•·ã•ã«å¿œã˜ã¦å°æ•°ã®æˆ»ã‚Šå€¤ã‚’è¿”å´ (0 ~ -1)
+    //      * ç§»å‹•ã‚­ãƒ¼ (D, â†’) ã‚’æŠ¼ã—ã¦ã„ã‚‹é•·ã•ã«å¿œã˜ã¦å°æ•°ã®æˆ»ã‚Šå€¤ã‚’è¿”å´ (0 ~ 1)
     //      */
-    //     float moveH = Input.GetAxis("Horizontal");  // x ²•ûŒü (¶‰E) ‚Ì“ü—Í’l‚ğŠi”[ (-1 ~ 1)
+    //     float moveH = Input.GetAxis("Horizontal");  // x è»¸æ–¹å‘ (å·¦å³) ã®å…¥åŠ›å€¤ã‚’æ ¼ç´ (-1 ~ 1)
     //     /*
     //      * Input.GetAxis("Vertical")
-    //      + Vertical : Input Manager ‚©‚çƒL[İ’è‰Â”\
-    //      * ˆÚ“®ƒL[ (S, «) ‚ğ‰Ÿ‚µ‚Ä‚¢‚é’·‚³‚É‰‚¶‚Ä¬”‚Ì–ß‚è’l‚ğ•Ô‹p (0 ~ -1)
-    //      * ˆÚ“®ƒL[ (W, ª) ‚ğ‰Ÿ‚µ‚Ä‚¢‚é’·‚³‚É‰‚¶‚Ä¬”‚Ì–ß‚è’l‚ğ•Ô‹p (0 ~ 1)
+    //      + Vertical : Input Manager ã‹ã‚‰ã‚­ãƒ¼è¨­å®šå¯èƒ½
+    //      * ç§»å‹•ã‚­ãƒ¼ (S, â†“) ã‚’æŠ¼ã—ã¦ã„ã‚‹é•·ã•ã«å¿œã˜ã¦å°æ•°ã®æˆ»ã‚Šå€¤ã‚’è¿”å´ (0 ~ -1)
+    //      * ç§»å‹•ã‚­ãƒ¼ (W, â†‘) ã‚’æŠ¼ã—ã¦ã„ã‚‹é•·ã•ã«å¿œã˜ã¦å°æ•°ã®æˆ»ã‚Šå€¤ã‚’è¿”å´ (0 ~ 1)
     //      */
-    //     float moveV = Input.GetAxis("Vertical");    // z ²•ûŒü (‘OŒã) ‚Ì“ü—Í’l‚ğŠi”[ (-1 ~ 1)
+    //     float moveV = Input.GetAxis("Vertical");    // z è»¸æ–¹å‘ (å‰å¾Œ) ã®å…¥åŠ›å€¤ã‚’æ ¼ç´ (-1 ~ 1)
     //     /*
-    //      * Vector3 Œ^ : (x, y, z)
+    //      * Vector3 å‹ : (x, y, z)
     //      * 
-    //      * new ‰‰Zq : ƒNƒ‰ƒX, \‘¢‘Ì, ”z—ñ“™‚ÌƒCƒ“ƒXƒ^ƒ“ƒX (V‹KƒIƒuƒWƒFƒNƒg) ‚ğ¶¬
+    //      * new æ¼”ç®—å­ : ã‚¯ãƒ©ã‚¹, æ§‹é€ ä½“, é…åˆ—ç­‰ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ (æ–°è¦ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ) ã‚’ç”Ÿæˆ
     //      */
-    //     Vector3 move = new Vector3(moveH, 0, moveV);    // ‰Šú‰»
+    //     Vector3 move = new Vector3(moveH, 0, moveV);    // åˆæœŸåŒ–
     //     /*
     //      * Rigidbody.AddForce(Vector3 force)
-    //      * force : —Í (ƒ[ƒ‹ƒh‹óŠÔ)
-    //      * ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (Rigidbody.gameObject) ‚É—Í (ƒ[ƒ‹ƒh‹óŠÔ) ‚ğ•t—^
+    //      * force : åŠ› (ãƒ¯ãƒ¼ãƒ«ãƒ‰ç©ºé–“)
+    //      * ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (Rigidbody.gameObject) ã«åŠ› (ãƒ¯ãƒ¼ãƒ«ãƒ‰ç©ºé–“) ã‚’ä»˜ä¸
     //      */
-    //     rb.AddForce(move * speed);  // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (Player) ‚É—Í (move * speed) ‚ğ•t—^
+    //     rb.AddForce(move * speed);  // ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (Player) ã«åŠ› (move * speed) ã‚’ä»˜ä¸
     // }
 
     /*
-     * MonoBehaviour.FixedUpdate() : ‘SƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì MonoBehaviour.Start() I—¹Œã, ƒtƒŒ[ƒ€ (ˆê’è) –ˆ‚É 1 ‰ñ‚¾‚¯Às‚³‚ê‚éƒƒ\ƒbƒh
+     * MonoBehaviour.FixedUpdate() : å…¨ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã® MonoBehaviour.Start() çµ‚äº†å¾Œ, ãƒ•ãƒ¬ãƒ¼ãƒ  (ä¸€å®š) æ¯ã« 1 å›ã ã‘å®Ÿè¡Œã•ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
      */
     void FixedUpdate()
     {
         /*
          * Input.GetAxis("Horizontal")
-         * Horizontal : Input Manager ‚©‚çƒL[İ’è‰Â”\
-         * ˆÚ“®ƒL[ (A, ©) ‚ğ‰Ÿ‚µ‚Ä‚¢‚é’·‚³‚É‰‚¶‚Ä¬”‚Ì–ß‚è’l‚ğ•Ô‹p (0 ~ -1)
-         * ˆÚ“®ƒL[ (D, ¨) ‚ğ‰Ÿ‚µ‚Ä‚¢‚é’·‚³‚É‰‚¶‚Ä¬”‚Ì–ß‚è’l‚ğ•Ô‹p (0 ~ 1)
+         * Horizontal : Input Manager ã‹ã‚‰ã‚­ãƒ¼è¨­å®šå¯èƒ½
+         * ç§»å‹•ã‚­ãƒ¼ (A, â†) ã‚’æŠ¼ã—ã¦ã„ã‚‹é•·ã•ã«å¿œã˜ã¦å°æ•°ã®æˆ»ã‚Šå€¤ã‚’è¿”å´ (0 ~ -1)
+         * ç§»å‹•ã‚­ãƒ¼ (D, â†’) ã‚’æŠ¼ã—ã¦ã„ã‚‹é•·ã•ã«å¿œã˜ã¦å°æ•°ã®æˆ»ã‚Šå€¤ã‚’è¿”å´ (0 ~ 1)
          */
-        float moveH = Input.GetAxis("Horizontal");  // x ²•ûŒü (¶‰E) ‚Ì“ü—Í’l‚ğŠi”[ (-1 ~ 1)
+        float moveH = Input.GetAxis("Horizontal");  // x è»¸æ–¹å‘ (å·¦å³) ã®å…¥åŠ›å€¤ã‚’æ ¼ç´ (-1 ~ 1)
         /*
          * Input.GetAxis("Vertical")
-         * Vertical : Input Manager ‚©‚çƒL[İ’è‰Â”\
-         * ˆÚ“®ƒL[ (S, «) ‚ğ‰Ÿ‚µ‚Ä‚¢‚é’·‚³‚É‰‚¶‚Ä¬”‚Ì–ß‚è’l‚ğ•Ô‹p (0 ~ -1)
-         * ˆÚ“®ƒL[ (W, ª) ‚ğ‰Ÿ‚µ‚Ä‚¢‚é’·‚³‚É‰‚¶‚Ä¬”‚Ì–ß‚è’l‚ğ•Ô‹p (0 ~ 1)
+         * Vertical : Input Manager ã‹ã‚‰ã‚­ãƒ¼è¨­å®šå¯èƒ½
+         * ç§»å‹•ã‚­ãƒ¼ (S, â†“) ã‚’æŠ¼ã—ã¦ã„ã‚‹é•·ã•ã«å¿œã˜ã¦å°æ•°ã®æˆ»ã‚Šå€¤ã‚’è¿”å´ (0 ~ -1)
+         * ç§»å‹•ã‚­ãƒ¼ (W, â†‘) ã‚’æŠ¼ã—ã¦ã„ã‚‹é•·ã•ã«å¿œã˜ã¦å°æ•°ã®æˆ»ã‚Šå€¤ã‚’è¿”å´ (0 ~ 1)
          */
-        float moveV = Input.GetAxis("Vertical");    // z ²•ûŒü (‘OŒã) ‚Ì“ü—Í’l‚ğŠi”[ (-1 ~ 1)
+        float moveV = Input.GetAxis("Vertical");    // z è»¸æ–¹å‘ (å‰å¾Œ) ã®å…¥åŠ›å€¤ã‚’æ ¼ç´ (-1 ~ 1)
         /*
-         * Vector3 Œ^ : (x, y, z)
+         * Vector3 å‹ : (x, y, z)
          * 
-         * new ‰‰Zq : ƒNƒ‰ƒX, \‘¢‘Ì, ”z—ñ“™‚ÌƒCƒ“ƒXƒ^ƒ“ƒX (V‹KƒIƒuƒWƒFƒNƒg) ‚ğ¶¬
+         * new æ¼”ç®—å­ : ã‚¯ãƒ©ã‚¹, æ§‹é€ ä½“, é…åˆ—ç­‰ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ (æ–°è¦ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ) ã‚’ç”Ÿæˆ
          */
-        Vector3 move = new Vector3(moveH, 0, moveV);    // ‰Šú‰»
+        Vector3 move = new Vector3(moveH, 0, moveV);    // åˆæœŸåŒ–
         /*
-         * •¨—‰‰Z : MonoBehaviour.FixedUpdate() “àˆ—„§
+         * ç‰©ç†æ¼”ç®— : MonoBehaviour.FixedUpdate() å†…å‡¦ç†æ¨å¥¨
          * 
          * Rigidbody.AddForce(Vector3 force)
-         * force : —Í (ƒ[ƒ‹ƒh‹óŠÔ)
-         * ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (Rigidbody.gameObject) ‚É—Í (ƒ[ƒ‹ƒh‹óŠÔ) ‚ğ•t—^
+         * force : åŠ› (ãƒ¯ãƒ¼ãƒ«ãƒ‰ç©ºé–“)
+         * ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (Rigidbody.gameObject) ã«åŠ› (ãƒ¯ãƒ¼ãƒ«ãƒ‰ç©ºé–“) ã‚’ä»˜ä¸
          */
-        rb.AddForce(move * speed);  // ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (Player) ‚É—Í (move * speed) ‚ğ•t—^
+        rb.AddForce(move * speed);  // ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (Player) ã«åŠ› (move * speed) ã‚’ä»˜ä¸
     }
 
     /*
-     * Collider ƒRƒ“ƒ|[ƒlƒ“ƒg : ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚É“–‚½‚è”»’è“™‚ğ’Ç‰Á
-     * ƒgƒŠƒK‹@”\ (isTrigger == true) ¨ Rigidbody ‚ÌÕ“Ë”»’è–³Œø, ƒgƒŠƒKƒCƒxƒ“ƒg (OnTrigger) ”­¶
-     * Õ“Ë‹@”\ (isTrigger == false) ¨ Rigidbody ‚ÌÕ“Ë”»’è—LŒø, Õ“ËƒCƒxƒ“ƒg (OnCollision) ”­¶
+     * Collider ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ : ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å½“ãŸã‚Šåˆ¤å®šç­‰ã‚’è¿½åŠ 
+     * ãƒˆãƒªã‚¬æ©Ÿèƒ½ (isTrigger == true) â†’ Rigidbody ã®è¡çªåˆ¤å®šç„¡åŠ¹, ãƒˆãƒªã‚¬ã‚¤ãƒ™ãƒ³ãƒˆ (OnTrigger) ç™ºç”Ÿ
+     * è¡çªæ©Ÿèƒ½ (isTrigger == false) â†’ Rigidbody ã®è¡çªåˆ¤å®šæœ‰åŠ¹, è¡çªã‚¤ãƒ™ãƒ³ãƒˆ (OnCollision) ç™ºç”Ÿ
      * 
      * MonoBehaviour.OnTriggerEnter(Collider other)
-     * other : ‘Šè‚Ì Collider ƒRƒ“ƒ|[ƒlƒ“ƒg (QÆ)
-     * ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (—¼•û) : Collider ƒRƒ“ƒ|[ƒlƒ“ƒg•K{
-     * ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (•Ğ•û) : Rigidbody ƒRƒ“ƒ|[ƒlƒ“ƒg, ƒgƒŠƒK‹@”\•K{
-     * ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (ƒgƒŠƒK‹@”\) ‚Ì—ÌˆæN“ü‚É 1 ‰ñ‚¾‚¯Às‚³‚ê‚éƒƒ\ƒbƒh
+     * other : ç›¸æ‰‹ã® Collider ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ (å‚ç…§)
+     * ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (ä¸¡æ–¹) : Collider ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå¿…é ˆ
+     * ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (ç‰‡æ–¹) : Rigidbody ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ, ãƒˆãƒªã‚¬æ©Ÿèƒ½å¿…é ˆ
+     * ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (ãƒˆãƒªã‚¬æ©Ÿèƒ½) ã®é ˜åŸŸä¾µå…¥æ™‚ã« 1 å›ã ã‘å®Ÿè¡Œã•ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
      */
     private void OnTriggerEnter(Collider other)
     {
         /*
-         * ƒvƒƒpƒeƒB : ƒAƒNƒZƒX (ƒNƒ‰ƒXŠO ¨ ƒƒ“ƒo) ‚ğ§Œä‚·‚éƒƒ\ƒbƒh
+         * ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ : ã‚¢ã‚¯ã‚»ã‚¹ (ã‚¯ãƒ©ã‚¹å¤– â†’ ãƒ¡ãƒ³ãƒ) ã‚’åˆ¶å¾¡ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
          * 
-         * Component.gameObject{ get; } : ‘SƒRƒ“ƒ|[ƒlƒ“ƒg‚ÍƒvƒƒpƒeƒB‚ğ—p‚¢‚ÄƒAƒ^ƒbƒ`‚³‚ê‚Ä‚¢‚éƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (QÆ) ‚ğæ“¾‰Â”\
+         * Component.gameObject{ get; } : å…¨ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã¯ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã‚’ç”¨ã„ã¦ã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã„ã‚‹ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (å‚ç…§) ã‚’å–å¾—å¯èƒ½
          * 
          * Collider.gameObject.CompareTag(string tag)
-         * Collider : Collider ƒRƒ“ƒ|[ƒlƒ“ƒg (QÆ)
-         * gameObject (È—ª‰Â”\) : ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (QÆ)
-         * tag : ƒ^ƒO (’l)
-         * gameObject.tag == tag ¨ true
-         * gameObject.tag != tag ¨ false
+         * Collider : Collider ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ (å‚ç…§)
+         * gameObject (çœç•¥å¯èƒ½) : ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (å‚ç…§)
+         * tag : ã‚¿ã‚° (å€¤)
+         * gameObject.tag == tag â†’ true
+         * gameObject.tag != tag â†’ false
          */
-        if (other.gameObject.CompareTag("Item"))    // ‘Šè‚ÌƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ìƒ^ƒO‚ª Item (ƒCƒ“ƒXƒyƒNƒ^‚©‚çİ’è) ‚Ìê‡
+        if (other.gameObject.CompareTag("Item"))    // ç›¸æ‰‹ã®ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¿ã‚°ãŒ Item (ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ã‹ã‚‰è¨­å®š) ã®å ´åˆ
         {
             /*
              * GameObject.SetActive(bool value)
-             * value : ƒu[ƒ‹’l (true, false)
-             * ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ÌƒAƒNƒeƒBƒuó‘Ô‚ğİ’è
+             * value : ãƒ–ãƒ¼ãƒ«å€¤ (true, false)
+             * ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã‚’è¨­å®š
              */
-            other.gameObject.SetActive(false);  // ‘Šè‚ÌƒQ[ƒ€ƒIƒuƒWƒFƒNƒg (Item) ‚ğ–³Œø‰»
-            count = count + 1;  // ƒCƒ“ƒNƒŠƒƒ“ƒg
-            // Debug.Log(count);   // ƒRƒ“ƒ\[ƒ‹‚ÉƒAƒCƒeƒ€æ“¾”‚ğ•\¦
-            SetCountText(); // ƒeƒLƒXƒg (ƒAƒCƒeƒ€æ“¾”) ‚ğ UI ‚É•\¦
+            other.gameObject.SetActive(false);  // ç›¸æ‰‹ã®ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ (Item) ã‚’ç„¡åŠ¹åŒ–
+            count = count + 1;  // ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
+            // Debug.Log(count);   // ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æ•°ã‚’è¡¨ç¤º
+            SetCountText(); // ãƒ†ã‚­ã‚¹ãƒˆ (ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æ•°) ã‚’ UI ã«è¡¨ç¤º
             /*
              * AudioSource.Play()
-             * Audio Resurce ‚ğÄ¶
-             * d•¡Ä¶ (AudioSource.Play() ‚Ì•À—ñˆ—) •s‰Â”\
+             * Audio Resurce ã‚’å†ç”Ÿ
+             * é‡è¤‡å†ç”Ÿ (AudioSource.Play() ã®ä¸¦åˆ—å‡¦ç†) ä¸å¯èƒ½
              */
-            getSE.Play();   // Audio Resurce (ItemGet) ‚ğÄ¶
+            getSE.Play();   // Audio Resurce (ItemGet) ã‚’å†ç”Ÿ
         }
-        else if (other.gameObject.CompareTag("Bottom")) // ‘Šè‚ÌƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ìƒ^ƒO‚ª Bottom (ƒCƒ“ƒXƒyƒNƒ^‚©‚çİ’è) ‚Ìê‡
+        else if (other.gameObject.CompareTag("Bottom")) // ç›¸æ‰‹ã®ã‚²ãƒ¼ãƒ ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¿ã‚°ãŒ Bottom (ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ã‹ã‚‰è¨­å®š) ã®å ´åˆ
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // ƒV[ƒ“‚ğƒŠƒ[ƒh (ƒŠƒXƒ^[ƒg)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // ã‚·ãƒ¼ãƒ³ã‚’ãƒªãƒ­ãƒ¼ãƒ‰ (ãƒªã‚¹ã‚¿ãƒ¼ãƒˆ)
         }
     }
 
     void SetCountText()
     {
         /*
-         * Event System ƒIƒuƒWƒFƒNƒg : UI ‘€ì‚ğŠÇ—, ƒV[ƒ“–ˆ‚É 1 ƒIƒuƒWƒFƒNƒg
+         * Event System ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ : UI æ“ä½œã‚’ç®¡ç†, ã‚·ãƒ¼ãƒ³æ¯ã« 1 ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
          * 
-         * Canvas ƒIƒuƒWƒFƒNƒg : UI —v‘f (ƒ{ƒ^ƒ“, ‰æ‘œ, ƒeƒLƒXƒg“™) ‚Ì•\¦—Ìˆæ (eƒIƒuƒWƒFƒNƒg)
+         * Canvas ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ : UI è¦ç´  (ãƒœã‚¿ãƒ³, ç”»åƒ, ãƒ†ã‚­ã‚¹ãƒˆç­‰) ã®è¡¨ç¤ºé ˜åŸŸ (è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ)
          * 
-         * Text ƒIƒuƒWƒFƒNƒg : ƒeƒLƒXƒg‚ğƒLƒƒƒ“ƒoƒX‚É•\¦ (qƒIƒuƒWƒFƒNƒg)
+         * Text ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ : ãƒ†ã‚­ã‚¹ãƒˆã‚’ã‚­ãƒ£ãƒ³ãƒã‚¹ã«è¡¨ç¤º (å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ)
          */
-        countText.text = "GetNum : " + count.ToString();  // ƒeƒLƒXƒg (ƒAƒCƒeƒ€æ“¾”) ‚ğ UI ‚É•\¦
+        countText.text = "GetNum : " + count.ToString();  // ãƒ†ã‚­ã‚¹ãƒˆ (ã‚¢ã‚¤ãƒ†ãƒ å–å¾—æ•°) ã‚’ UI ã«è¡¨ç¤º
     }
 }
